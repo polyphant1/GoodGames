@@ -7,8 +7,21 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-
+<div class="navbar navbar-default navbar-fixed-top">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">GoodGames</a>
+    </div>
+    <div class="collapse navbar-collapse">
+      <ul class="nav navbar-nav">
+        <li><%= link_to "All statuses", statuses_path %></li>
+      </ul>
+    </div>
+  </div>
+</div>
+<div class="container">
 <%= yield %>
+</div>
 
 </body>
 </html>
