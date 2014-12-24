@@ -1,0 +1,27 @@
+
+development:
+  adapter: postgresql
+  encoding: SQL_ASCII #utf-8
+  database: goodgames_development
+  pool: 5
+  host: localhost
+  username: postgres
+  password: goodgames1964
+
+test: &TEST
+  adapter: postgresql
+  encoding: SQL_ASCII #utf-8
+  database: goodgames_test
+  pool: 5
+  host: localhost
+  username: postgres
+  password: goodgames1964
+
+production:
+  adapter: postgresql
+  encoding: SQL_ASCII #utf-8
+  database: goodgames_production
+  pool: 5
+  host: localhost
+  username: postgres
+  password: goodgames1964
