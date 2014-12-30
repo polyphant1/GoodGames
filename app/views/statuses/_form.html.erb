@@ -1,4 +1,4 @@
-<%= simple_form_for(@status, html: { class: 'form-inline' }) do |f| %>
+<%= simple_form_for(@status, html: { class: 'form-inline well' }) do |f| %>
   <% if @status.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@status.errors.count, "error") %> prohibited this status from being saved:</h2>
@@ -11,7 +11,8 @@
     </div>
   <% end %>
 
-  <%= f.input :user_id, collection: User.all, label_method: :full_name %><br>
+  <%= f.input :user_id, collection: User.order(last_name: :desc), label_method: :full_name, selected: current_user.id  %>
+  
   <%= f.input :context %>
 
   <div class="form-group">
