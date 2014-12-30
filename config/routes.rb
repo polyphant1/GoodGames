@@ -1,10 +1,20 @@
 Rails.application.routes.draw do
   
-  # remove devise_for :users as deprecated in Rails 4, replace with registrations_controller
+  # CL: update 'devise_for :users' as deprecated in Rails 4, replace with registrations_controller
   # devise_for :users
   devise_for :users, :controllers => { registrations: 'registrations' }
   
+  # CL: change default routes for user actions in devise
+  devise_scope :user do
+    get 'register', to: 'registrations#new', as: :register
+    get 'login', to: 'devise/sessions#new', as: :login
+    get'logout', to: 'devise/sessions#destroy', as: :logout
+  end
+  
   resources :statuses
+  
+  # add a 'feed' route
+  get 'feed', to: 'statuses#index', as: :feed
 
   root to: 'statuses#index'
 
