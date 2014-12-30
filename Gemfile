@@ -40,3 +40,4 @@ gem 'spring',        group: :development
 
 # CL: User defined gems
 gem 'devise'
+gem 'simple_form'
