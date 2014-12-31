@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
   
+  get 'profiles/show'
+
   # CL: update 'devise_for :users' as deprecated in Rails 4, replace with registrations_controller
   # devise_for :users
   devise_for :users, :controllers => { registrations: 'registrations' }
