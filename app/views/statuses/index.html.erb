@@ -1,11 +1,17 @@
 
-<div class="page-header"><h1>Timeline</h1></div>
+<div class="row">
+  <div class="col-md-12">
+    <div class="page-header">
+      <h1>Timeline</h1>
+    </div>
+</div>
 
 <% if user_signed_in? %>
   <%= link_to 'New Status', new_status_path, class: "btn btn-success" %>
 <% else %>
   <p>Please login to post a status</p>
 <% end %>
+
 
 <% @statuses.each do |status| %>
   <div class="status">
