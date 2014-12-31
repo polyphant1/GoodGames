@@ -10,8 +10,6 @@
       </ul>
     </div>
   <% end %>
-
-  <%= f.input :user_id, collection: User.order(last_name: :desc), label_method: :full_name %> <!--, selected: current_user.id  %-->
   
   <%= f.input :context %>
 

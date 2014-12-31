@@ -1,11 +1,11 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  context: MyString
+  context: "MyString blah blah"
   user: chris
 two:
   context: MyString
-  user: chris
+  user: abi
 three: 
   context: another thing
   user: abi
