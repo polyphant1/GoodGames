@@ -8,6 +8,10 @@ gem 'rails', '4.1.6'
 # CL: Use postgresql as the gem forActive Record management
 gem 'pg'
 
+group :test do
+   gem 'shoulda' 
+end
+
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.3'
 # Use Uglifier as compressor for JavaScript assets
