@@ -4,8 +4,7 @@ class StatusesControllerTest < ActionController::TestCase
   include Devise::TestHelpers 
   
   setup do
-    @status1 = statuses(:one)
-    @status2 = statuses(:two)
+    @status = statuses(:one)
   end
 
   test "should get index" do
@@ -36,55 +35,69 @@ class StatusesControllerTest < ActionController::TestCase
     sign_in users(:chris)
     
     assert_difference('Status.count') do
-      post :create, status: { context: @status1.context, user_id: @status1.user.id }
+      post :create, status: { context: @status.context, user_id: @status.user.id }
     end
 
     assert_redirected_to status_path(assigns(:status))
   end
   
   test "should create status for current user when logged in" do
-    sign_in users(:abi)
+    sign_in users(:chris)
     
     assert_difference('Status.count') do
-      post :create, status: { context: @status2.context, user_id: @status2.user.id }
+      post :create, status: { context: @status.context, user_id: users(:chris).id }
     end
 
     assert_redirected_to status_path(assigns(:status))
-    assert_equal assigns(:status).user_id, users(:abi).id
+    assert_equal assigns(:status).user_id, users(:chris).id
   end
 
   test "should show status" do
-    get :show, id: @status1
+    get :show, id: @status
     assert_response :success
   end
 
   test "should be logged in to edit" do
-    get :edit, id: @status1
+    get :edit, id: @status
     assert_response :redirect
     assert_redirected_to new_user_session_path
   end
 
   test "should get edit" do
     sign_in users(:chris)
-    get :edit, id: @status1
+    get :edit, id: @status
     assert_response :success
   end
   
   test "should be logged in to update" do
-    patch :update, id: @status1, status: { context: @status1.context}
+    patch :update, id: @status, status: { context: @status.context}
     assert_response :redirect
     assert_redirected_to new_user_session_path
   end
 
   test "should update status when logged in" do
     sign_in users(:chris)
-    patch :update, id: @status1, status: { context: @status1.context}
+    patch :update, id: @status, status: { context: @status.context}
     assert_redirected_to status_path(assigns(:status))
+  end
+  
+  test "should update status for the current user when logged in" do
+    sign_in users(:chris)
+    patch :update, id: @status, status: { context: @status.context, user_id: users(:abi).id }
+    assert_redirected_to status_path(assigns(:status))
+    assert_equal assigns(:status).user_id, users(:chris).id
+  end
+  
+  test "should not update the status if nothing has changed" do
+    sign_in users(:chris)
+    patch :update, id: @status, status: {user_id: @status.user_id, content: 'MyText'}
+    assert_redirected_to status_path(assigns(:status))
+    assert_equal assigns(:status).user_id, users(:chris).id
   end
 
   test "should destroy status" do
     assert_difference('Status.count', -1) do
-      delete :destroy, id: @status1
+      delete :destroy, id: @status
     end
 
     assert_redirected_to statuses_path
