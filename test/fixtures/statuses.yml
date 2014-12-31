@@ -6,3 +6,6 @@ one:
 two:
   context: MyString
   user: chris
+three: 
+  context: another thing
+  user: abi
