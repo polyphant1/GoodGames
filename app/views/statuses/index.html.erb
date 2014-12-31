@@ -11,7 +11,7 @@
   <div class="status">
     <div class="row">
       <div class="col-md-1">
-        <i>avatar</i>
+        <%= image_tag status.user.gravatar_url %>
       </div>
       <div class="col-md-10">
         <b><%= status.user.full_name %></b>
