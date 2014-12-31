@@ -1,5 +1,7 @@
 class StatusesController < ApplicationController
   before_action :set_status, only: [:show, :edit, :update, :destroy]
+  # CL; should add authentication test for all status actions
+  before_action :authenticate_user!, only: [:new]#, :edit, :update, :destroy]
 
   # GET /statuses
   # GET /statuses.json

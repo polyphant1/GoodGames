@@ -1,6 +1,8 @@
 require 'test_helper'
 
 class StatusesControllerTest < ActionController::TestCase
+  include Devise::TestHelpers 
+  
   setup do
     @status = statuses(:one)
   end
@@ -11,14 +13,21 @@ class StatusesControllerTest < ActionController::TestCase
     assert_not_nil assigns(:statuses)
   end
 
-  test "should get new" do
+  test "should get redirected when not logged in" do
+    get :new
+    assert_response :redirect
+    assert_redirected_to new_user_session_path
+  end
+  
+  test "should get new when logged in" do
+    sign_in users(:chris)
     get :new
     assert_response :success
   end
 
   test "should create status" do
     assert_difference('Status.count') do
-      post :create, status: { context: @status.context, name: @status.name }
+      post :create, status: { context: @status.context, name: @status.id }
     end
 
     assert_redirected_to status_path(assigns(:status))
@@ -35,7 +44,7 @@ class StatusesControllerTest < ActionController::TestCase
   end
 
   test "should update status" do
-    patch :update, id: @status, status: { context: @status.context, name: @status.name }
+    patch :update, id: @status, status: { context: @status.context}
     assert_redirected_to status_path(assigns(:status))
   end
 
