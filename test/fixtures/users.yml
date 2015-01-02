@@ -9,3 +9,9 @@ abi:
     last_name: "Lovell"
     email: "chrisl1991@hotmail.com"
     profile_name: "abil"
+    
+mike:
+    first_name: "Mike"
+    last_name: "The Frog"
+    email: "chrisl1991@gmail.aus"
+    profile_name: "mikethefrog"
