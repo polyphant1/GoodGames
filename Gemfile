@@ -8,8 +8,10 @@ gem 'rails', '4.1.6'
 # CL: Use postgresql as the gem forActive Record management
 gem 'pg'
 
+# CL: test gems
 group :test do
    gem 'shoulda' 
+   gem 'factory_girl_rails'
 end
 
 # Use SCSS for stylesheets
@@ -50,3 +52,4 @@ gem 'devise'
 gem 'simple_form'
 gem 'rails_12factor', '0.0.2'
 gem 'state_machine'
+

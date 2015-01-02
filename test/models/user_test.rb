@@ -58,9 +58,9 @@ class UserTest < ActiveSupport::TestCase
   end
   
   test "that creating friendships on a user works" do
-    users(:chris).friends << users(:mike)
-    users(:chris).friends.reload
-    assert users(:chris).friends.include?(users(:mike))
+    users(:chris).pending_friends << users(:mike)
+    users(:chris).pending_friends.reload
+    assert users(:chris).pending_friends.include?(users(:mike))
   end
   
   test "that calling to_param on a user returns the profile_name" do
