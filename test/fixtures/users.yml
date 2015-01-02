@@ -3,6 +3,7 @@ chris:
     last_name: "Lovell"
     email: "chrisl1991@hotmail.co.uk"
     profile_name: "poly"
+    encrypted_password: "$2a$10$Fh/Hm8RxDsuPTeBUr6864.GARlcmt7zF2WspaXGr3BIv2C27N.osq"
   
 abi:
     first_name: "Abi"
