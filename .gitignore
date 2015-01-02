@@ -17,3 +17,5 @@
 
 # Ignore c9 related files and folders
 /.c9/
+
+/Gemfile.lock
