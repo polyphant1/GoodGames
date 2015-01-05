@@ -2,6 +2,8 @@ class UserFriendship < ActiveRecord::Base
   belongs_to :user
   belongs_to :friend, class_name: 'User', foreign_key: 'friend_id'
   
+  # CL
+  after_destroy :delete_mutual_friendship!
   
   state_machine :state, initial: :pending do
     after_transition on: :accept, do: [:send_acceptance_email, :accept_mutual_friendship!]
@@ -40,5 +42,9 @@ class UserFriendship < ActiveRecord::Base
     # CL: Grab the mutual friendship and update the status without 
     # using the state machine so as not to invoke callbacks
     mutual_friendship.update_attribute(:state, 'accepted')
+  end
+  
+  def delete_mutual_friendship!
+    mutual_friendship.delete
   end
 end
