@@ -52,4 +52,4 @@ gem 'devise'
 gem 'simple_form'
 gem 'rails_12factor', '0.0.2'
 gem 'state_machine'
-
+gem 'draper'
