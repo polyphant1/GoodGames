@@ -2,6 +2,8 @@ class UserFriendship < ActiveRecord::Base
   belongs_to :user
   belongs_to :friend, class_name: 'User', foreign_key: 'friend_id'
   
+
+  
   # CL
   after_destroy :delete_mutual_friendship!
   
@@ -16,7 +18,6 @@ class UserFriendship < ActiveRecord::Base
   end
   
   def self.request(user1,user2)
-    #if user1 != user2
     transaction do
       friendship1 = create(user: user1, friend: user2, state: 'pending')
       friendship2 = create(user: user2, friend: user1, state: 'requested')

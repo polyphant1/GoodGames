@@ -1,18 +1,24 @@
 <div class="page-header">
     <h1><%= @user.profile_name %></h1>
-    <% if current_user != @user %>
-      <%= link_to "Add Friend", new_user_friendship_path(friend_id: @user) %>
-    <% end %>
 </div>
 
+<% if signed_in? %>
+  <div id="friend-status">
+    <% if current_user.friends.include?(@user) || current_user.pending_friends.include?(@user) %>
+      <%= link_to "Edit Friendship", edit_user_friendship_path(friend_id: @user), class: 'btn' %>
+    <% else %>
+      <%= link_to "Add Friend", new_user_friendship_path(friend_id: @user), class: 'btn', id: 'add-friendship', data: { friend_id: @user.to_param }, remote: true %>
+    <% end %>
+  </div>
+<% end %>
 
 <% if @statuses %>
-    <% @statuses.each do |status| %>
-        <div class = "well">
-            <%= status.context %>
-            <%= status.user_id %>
-            <hr />
-            <%= link_to time_ago_in_words(status.created_at), status_path(status) %> ago
-        </div>
-    <% end %>
+  <% @statuses.each do |status| %>
+    <div class = "well">
+      <%= status.context %>
+      <%= status.user_id %>
+      <hr />
+      <%= link_to time_ago_in_words(status.created_at), status_path(status) %> ago
+    </div>
+  <% end %>
 <% end %>
